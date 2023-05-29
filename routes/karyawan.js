@@ -88,4 +88,24 @@ router.post('/store', function (req, res, next) {
     }
 });
 
+// ...
+
+/**
+ * DELETE KARYAWAN
+ */
+router.get('/delete/:id', function (req, res, next) {
+    let id = req.params.id;
+
+    // Query untuk menghapus karyawan dengan ID tertentu
+    connection.query('DELETE FROM karyawan WHERE id_kar = ?', id, function (err, result) {
+        if (err) {
+            req.flash('error', err);
+        } else {
+            req.flash('success', 'Data Karyawan Berhasil Dihapus!');
+        }
+        res.redirect('/karyawan'); // Redirect ke halaman karyawan setelah menghapus
+    });
+});
+
+
 module.exports = router;
