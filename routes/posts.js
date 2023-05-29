@@ -34,42 +34,6 @@ router.get('/create', function (req, res, next) {
     })
 })
 
-/**
- * CREATE KARYAWAN
- */
-    router.get('/createkaryawan', function (req, res, next) {
-        res.render('posts/createkaryawan', {
-            no_induk: '', // Tambahkan data no_induk dengan nilai yang sesuai
-            nama: '', // Tambahkan data nama dengan nilai yang sesuai
-            id_jab: '' // Tambahkan data id_jab atau isi dengan nilai yang sesuai
-        });
-    });
-    router.post('/createkaryawan', function (req, res, next) {
-        // Dapatkan data yang dikirimkan dari form
-        var no_induk = req.body.no_induk;
-        var nama = req.body.nama;
-        var id_jab = req.body.id_jab;
-    
-        // Lakukan validasi data jika diperlukan
-    
-        // Lakukan operasi penyimpanan data ke dalam tabel karyawan
-        connection.query('INSERT INTO karyawan (no_induk, nama, id_jab) VALUES (?, ?, ?)', [no_induk, nama, id_jab], function (err, result) {
-            if (err) {
-                // Tangani kesalahan jika ada
-                console.error(err);
-                req.flash('error', 'Gagal menyimpan data karyawan');
-            } else {
-                // Data berhasil disimpan
-                req.flash('success', 'Data karyawan berhasil disimpan');
-            }
-    
-            // Setelah berhasil menyimpan data, redirect ke halaman karyawan
-            res.redirect('/karyawan');
-        });
-    });
-    
-
-
 
 
 
